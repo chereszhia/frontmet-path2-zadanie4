@@ -18,24 +18,30 @@ body {
   background-color: var(--off-white);
   color: var(--dark-grayish-blue);
   line-height: 1.6;
-  padding: 2rem 0;
+  padding: 1.5rem 0;
 }
 
-/* Wrapper */
+/* Ogólne kontenery */
 .container {
   max-width: 69rem;
   margin: 0 auto;
   padding: 0 1rem;
 }
 
-/* HEADER */
+/* Nagłówek */
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 3rem;
+  padding-bottom: 2.5rem;
 }
 
+/* Logo */
+.logo img {
+  display: block;
+}
+
+/* Nawigacja – desktop */
 .nav-list {
   display: flex;
   list-style: none;
@@ -49,11 +55,12 @@ body {
   transition: color 0.2s;
 }
 
-.nav-list a:hover, .nav-list a:focus-visible {
+.nav-list a:hover,
+.nav-list a:focus-visible {
   color: var(--soft-red);
 }
 
-/* Przycisk hamburgera (ukryty na desktopie) */
+/* Hamburger - ukryty na desktop */
 .menu-toggle {
   display: none;
   background: none;
@@ -70,7 +77,8 @@ body {
   position: relative;
 }
 
-.hamburger::before, .hamburger::after {
+.hamburger::before,
+.hamburger::after {
   content: '';
   position: absolute;
   width: 2.5rem;
@@ -82,7 +90,7 @@ body {
 .hamburger::before { top: -0.5rem; }
 .hamburger::after { bottom: -0.5rem; }
 
-/* GŁÓWNA SIATKA (2 kolumny) */
+/* Główny układ - siatka 2 kolumny */
 .grid-layout {
   display: grid;
   grid-template-columns: 2fr 1fr;
@@ -90,6 +98,7 @@ body {
   margin-bottom: 4rem;
 }
 
+/* Lewa kolumna – Hero */
 .hero img {
   width: 100%;
   height: auto;
@@ -126,11 +135,12 @@ body {
   transition: background-color 0.2s;
 }
 
-.btn:hover, .btn:focus-visible {
+.btn:hover,
+.btn:focus-visible {
   background-color: var(--very-dark-blue);
 }
 
-/* PANEL "NEW" */
+/* Prawa kolumna – New */
 .new-panel {
   background-color: var(--very-dark-blue);
   padding: 2rem;
@@ -168,11 +178,12 @@ body {
   transition: color 0.2s;
 }
 
-.new-panel a:hover h3, .new-panel a:focus-visible h3 {
+.new-panel a:hover h3,
+.new-panel a:focus-visible h3 {
   color: var(--soft-orange);
 }
 
-/* DOLNE ARTYKUŁY */
+/* Dolne artykuły */
 .top-articles {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -187,6 +198,7 @@ body {
 .top-articles img {
   max-width: 6.25rem;
   height: auto;
+  flex-shrink: 0;
 }
 
 .top-articles .number {
@@ -207,11 +219,12 @@ body {
   color: var(--very-dark-blue);
 }
 
-.top-articles a:hover, .top-articles a:focus-visible {
+.top-articles a:hover,
+.top-articles a:focus-visible {
   color: var(--soft-red);
 }
 
-/* FOOTER */
+/* Stopka */
 .attribution {
   text-align: center;
   font-size: 0.75rem;
@@ -219,14 +232,14 @@ body {
 }
 
 /* ===== RESPONSYWNOŚĆ ===== */
-/* Używamy rem/em w media queries */
 @media (max-width: 45rem) {
-  /* Nawigacja */
+  /* Pokazuje hamburger */
   .menu-toggle {
     display: block;
     z-index: 20;
   }
 
+  /* Menu mobilne – position: fixed jest zabezpieczone przed ucięciem treści */
   .navigation {
     position: fixed;
     top: 0;
@@ -239,11 +252,11 @@ body {
     transform: translateX(100%);
     transition: transform 0.3s ease;
     box-shadow: -5px 0 15px rgba(0,0,0,0.1);
-    overflow-y: auto; /* Ważne: zapobiega ucięciu treści przy powiększeniu */
+    overflow-y: auto;           /* <-- NAJWAŻNIEJSZE: ZABEZPIECZA PRZED UCIĘCIEM */
+    max-height: 100vh;          /* Zapobiega ucięciu przy powiększeniu */
     z-index: 10;
   }
 
-  /* Stan otwarty menu */
   .navigation.open {
     transform: translateX(0);
   }
@@ -258,7 +271,7 @@ body {
     color: var(--very-dark-blue);
   }
 
-  /* Przycisk zamykania (X) */
+  /* Transformacja hamburgera w X */
   .menu-toggle[aria-expanded="true"] .hamburger {
     background: transparent;
   }
@@ -269,9 +282,10 @@ body {
     transform: rotate(-45deg) translate(0.25rem, -0.25rem);
   }
 
-  /* Główna siatka */
+  /* Zmiana układu siatki */
   .grid-layout {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
 
   .hero-content {
@@ -287,14 +301,13 @@ body {
   }
 }
 
-/* ===== DOSTĘPNOŚĆ: PREFERS-REDUCED-MOTION ===== */
+/* ===== PREFERS-REDUCED-MOTION (bez !important) ===== */
 @media (prefers-reduced-motion: reduce) {
   * {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-  .navigation {
-    transition: none;
+    animation-duration: 0s;
+    animation-iteration-count: 1;
+    transition-duration: 0s;
+    /* Dodatkowo zapobiega animacjom scroll */
+    scroll-behavior: auto;
   }
 }
