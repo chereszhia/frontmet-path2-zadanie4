@@ -6,24 +6,24 @@
   <title>Frontend Mentor | News homepage</title>
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
   <link rel="stylesheet" href="style.css">
-  <!-- Google Font: Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <!-- Nagłówek z nawigacją -->
   <header class="header container">
     <div class="logo">
-      <img src="./assets/images/logo.svg" alt="W. logo" width="60" height="40">
+      <img src="./assets/images/logo.svg" alt="W. logo" width="65" height="40">
     </div>
 
-    <button class="menu-toggle" aria-label="Open menu" aria-expanded="false">
+    <!-- Poprawka: dodanie type="button" -->
+    <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">
       <span class="hamburger"></span>
     </button>
 
-    <nav class="navigation" role="navigation" aria-label="Main navigation">
+    <!-- Poprawka: usunięcie role="navigation" -->
+    <nav class="navigation" aria-label="Main navigation">
       <ul class="nav-list">
         <li><a href="#">Home</a></li>
         <li><a href="#">New</a></li>
@@ -35,9 +35,7 @@
   </header>
 
   <main class="container">
-    <!-- Główna siatka (2 kolumny) -->
     <div class="grid-layout">
-      <!-- Lewa kolumna -->
       <section class="hero">
         <picture>
           <source media="(max-width: 45rem)" srcset="./assets/images/image-web-3-mobile.jpg">
@@ -52,7 +50,6 @@
         </div>
       </section>
 
-      <!-- Prawa kolumna (New) -->
       <aside class="new-panel">
         <h2>New</h2>
         <ul>
@@ -78,7 +75,6 @@
       </aside>
     </div>
 
-    <!-- Dolna sekcja: 3 artykuły -->
     <section class="top-articles">
       <article>
         <img src="./assets/images/image-retro-pcs.jpg" alt="Retro computers" width="100" height="127">
